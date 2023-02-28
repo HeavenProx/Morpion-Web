@@ -14,118 +14,112 @@
         <link rel="stylesheet" href="style.css">
 
         <div class="row text-center" >
-            <div class="page col-m-12" >
-                <section class="">
-                    <div class="row"> <!-- div qui englobe l'espace de jeu environnementTable-->
-                        <div class="col-sm-7">
-                            <table class="tableJeu">
-                            <?php
+            <div class="page col-m-12 center" >
+                <div class="row zoneRow"> <!-- div qui englobe l'espace de jeu environnementTable-->
+                    <div class="col-sm-7">
+                        <table class="tableJeu">
+                        <?php
+ 
+                            if(!isset($_SESSION['grille']) || $_GET['case'] == 0){
+                                $_SESSION['grille'] =array(
+                                    0,0,0,
+                                    0,0,0,
+                                    0,0,0);
+                            }
 
-                                $_GET['reset'] == 1;
-                
-                                if(!isset($_SESSION['grille']) || $_GET['reset'] == 1){
-                                    $_SESSION['grille'] =array(
-                                        0,0,0,
-                                        0,0,0,
-                                        0,0,0);
-                                }
+                            $_SESSION['scoreJoueur'] = 0;
+                            $_SESSION['scoreBot'] = 0;
+                            $_SESSION['tourJoueur'] = 1;
+            
+                            $joueur1= 1;
+                            $bot = 2;
+                            $click = $_GET['case'];            
 
-                                $_SESSION['scoreJoueur'] = 0;
-                                $_SESSION['scoreBot'] = 0;
-                                $_SESSION['tourJoueur'] = 1;
-                
-                                $joueur1= 1;
-                                $bot = 2;
-                                $click = $_GET['case'];            
+                            $rang = 0;
 
-                                $rang = 0;
+                            for($ligne=0; $ligne <=2 ; $ligne++){
+                                echo '<tr>';
+                                for($colonne=0; $colonne <=2 ; $colonne++){
 
-                                for($ligne=0; $ligne <=2 ; $ligne++){
-                                    echo '<tr>';
-                                    for($colonne=0; $colonne <=2 ; $colonne++){
+                                    $rang++ ;
 
-                                        $rang++ ;
+                                    echo ' <td class="case" > 
+                                    <a href="?case='.$rang.'">';
 
-                                        echo ' <td class="case" > 
-                                        <a href="?case='.$rang.'">';
-
-                                        if ( $click == $rang and $_SESSION['grille'][$rang - 1]==0){
-                                            echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
-                                            $_SESSION['grille'][$rang - 1] = 1;
-                                        }
-                                        else if ($_SESSION['grille'][$rang - 1] != 0 ) {
-                                            if($_SESSION['grille'][$rang - 1] == 1){
-                                                echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
-                                            }
-                                                   
-                                            else{
-                                                echo '<img class="imgPions" src="Images/rond.png" alt="Croix">';
-                                            }
-                                                                                        }                  
-                                        if($_SESSION['grille'][0] == 1){echo '<img src="Images/croix.png" alt="Croix">';}
-                                            elseif($_SESSION['grille'][0] == 2){echo '<img src="Images/rond.png" alt="Circle">';} 
-                                            else echo " "; 
-
-                                        echo '</a></td>';
+                                    if ( $click == $rang and $_SESSION['grille'][$rang - 1]==0){
+                                        echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
+                                        $_SESSION['grille'][$rang - 1] = 1;
                                     }
-                                    echo '</tr>';
+                                    else if ($_SESSION['grille'][$rang - 1] != 0 ) {
+                                        if($_SESSION['grille'][$rang - 1] == 1){
+                                            echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
+                                        }
+                                                
+                                        else{
+                                            echo '<img class="imgPions" src="Images/rond.png" alt="Croix">';
+                                        }
+                                                                                    }                  
+                                    if($_SESSION['grille'][0] == 1){echo '<img src="Images/croix.png" alt="Croix">';}
+                                        elseif($_SESSION['grille'][0] == 2){echo '<img src="Images/rond.png" alt="Circle">';} 
+                                        else echo " "; 
+
+                                    echo '</a></td>';
                                 }
-                                var_dump($_SESSION['grille']);
-                                ?> 
-                            </table>
-                        </div>
+                                echo '</tr>';
+                            }
+                            ?> 
+                        </table>
+                    </div>
 
-                        <!-- Implementation coté texte -->
-                        <div id="cotetexte" class="col-sm-5 text-center">
+                    <!-- Implementation coté texte -->
+                    <div id="cotetexte" class="col-sm-5 text-center">
 
-                            <div id="texttopmorpion">
-                               
-                                <h3>Jeu du morpion</h3>  
-                                <div class="boutonFermer">
-                                    <a href="accueil.php"><img src="Images/boutonfermer.png" alt=""></a>
-                                </div>
-
-                                <p>Joueur <?php echo $_SESSION['tourJoueur']; ?> c'est ton tour</p>
-
-                                <div class="principejeu borderAngle">
-                                    <h5>Le principe : </h5>
-                                    <p>Chaque joueur a son propre symbole, la croix ou le rond. Chaque joueur pose sont symbole tour à tour.</p>
-                                </div>
-
-                                <div class="gagnerjeu borderAngle">
-                                    <h5>Comment gagner ?</h5>
-                                    <p>Le premier joueur a aligner 3 symboles identiques gagne la partie et donc 1 point. Si égalité il garde le même nombre de point.</p>
-                                </div>
-
-                                <!-- Record et image sur le coté  -->
-                                <div class="recordimg container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6 text-center record">
-                                            <div class="recordperso borderAngle">
-                                                <h5>Record personnel :</h5>
-                                                <p>23 win</p>
-                                            </div>
-                                            <div class="recordserveur borderAngle">
-                                                <h5>Record sur le serveur</h5>
-                                                <p>37 win - Hugo</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5 exemplegagne">
-                                            <img src="Images/exemplegagne.png" alt="">
-                                        </div>                           
-                                    </div>
-                                </div>
-                                <!-- Bouton rejouer -->
-                                <a href="morpion.php"><img src="Images/boutonrejouer.png" alt=""></a>
-                                <button type="button" 
-                                    onclick="alert('Report generation has started.');">Réessayer
-                                </button>
+                        <div id="texttopmorpion">
+                            
+                            <h3>Jeu du morpion</h3>  
+                            <div class="boutonFermer">
+                                <a href="accueil.php"><img src="Images/boutonfermer.png" alt=""></a>
                             </div>
+
+                            <p>Joueur <?php echo $_SESSION['tourJoueur']; ?> c'est ton tour</p>
+
+                            <div class="principejeu borderAngle">
+                                <h5>Le principe : </h5>
+                                <p>Chaque joueur a son propre symbole, la croix ou le rond. Chaque joueur pose sont symbole tour à tour.</p>
+                            </div>
+
+                            <div class="gagnerjeu borderAngle">
+                                <h5>Comment gagner ?</h5>
+                                <p>Le premier joueur a aligner 3 symboles identiques gagne la partie et donc 1 point. Si égalité il garde le même nombre de point.</p>
+                            </div>
+
+                            <!-- Record et image sur le coté  -->
+                            <div class="recordimg container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6 text-center record">
+                                        <div class="recordperso borderAngle">
+                                            <h5>Record personnel :</h5>
+                                            <p>23 win</p>
+                                        </div>
+                                        <div class="recordserveur borderAngle">
+                                            <h5>Record sur le serveur</h5>
+                                            <p>37 win - Hugo</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 exemplegagne">
+                                        <img src="Images/exemplegagne.png" alt="">
+                                    </div>                           
+                                </div>
+                            </div>
+                            <!-- Bouton rejouer -->
+                            <a href="morpion.php?case=0" onclick="alert('Vous êtes sur le point de rejouer et de remettre un point en jeu.');">
+                                <img src="Images/boutonrejouer.png" alt="">
+                            </a>
                         </div>
                     </div>
+                </div>
                     <!-- <script>alert("Vous avez gagné ! 1 point est ajouté à votre solde.")</script>
                     <script>alert("Vous avez perdu ! 1 point est retiré de votre solde.")</script>-->
-                </div>  
             </div>
         </div>
     </body>

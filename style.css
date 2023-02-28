@@ -124,9 +124,11 @@ body{
     height:850px;
     width: 850px;
     background-color: #FFFFFF;
-    margin-left: 5%;
-    padding-top: 3%;
+    margin-left: 10%;
+    margin-top: 5px;
+    padding-top: 5%;
     background-image: url("Images/fondjeu.png");
+    justify-content: center;
 }
 td a{
     display: block;
@@ -145,4 +147,8 @@ td a{
 
 .borderAngle{
     border-radius: 10px;
+}
+
+.zoneRow{
+    background-image: linear-gradient(to top, #0d8192, #006d8f, #235885, #3b4272, #482a57, #552356, #621951, #6e0649, #8b0362, #a9017e, #c6029c, #e30abd);
 }
