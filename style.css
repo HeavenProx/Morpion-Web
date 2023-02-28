@@ -1,0 +1,148 @@
+body{
+    background-color: rgb(72, 10, 119);
+}
+
+.titre{
+    color: white;
+}
+
+#inscriptionmorpion{
+    background-color: rgb(127,127,127,2);
+}
+
+#midscreen{
+    text-align: center;
+    width: 360px;
+    height: 500px;
+    margin: auto;
+}
+
+.cotejeu{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#cotetexte{
+    background-color: gray;
+    height: 89.9vh;
+    width: 78.9vh;
+}
+
+.page {
+    border: solid 5px white;
+    height: 91vh;
+    width: 191vh;
+    margin: 4vh;
+    background-color: black;
+}
+
+#texttopmorpion{
+    color: white;
+    text-align: center;
+    padding: 2em;
+}
+
+.principejeu{
+    margin-top: 2em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    background-color: rgb(202, 6, 192);
+    border: solid 3px white;
+}
+
+.gagnerjeu{
+    margin-top: 1em;
+    margin-bottom: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    background-color: rgb(145, 8, 83);
+    border: solid 3px white;
+}
+
+.record{
+    margin-top: 1.4em;
+}
+
+.recordperso{
+    margin-left: 2em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    height: 6.3em;
+    background-color: rgb(94, 7, 94);
+    border: solid 3px white;
+}
+
+.recordserveur{
+    margin: 1em;
+    margin-left: 2em;
+    padding: 1em;
+    height: 6.3em;
+    background-color: rgb(18, 5, 75);
+    border: solid 3px white;
+}
+
+.recordimg{
+    margin-top: 2em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: auto;
+}
+
+.exemplegagne{
+    margin: 1em;
+}
+
+.fondjeu {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.grille {
+    position: absolute;
+    top: 8vh;
+    left: 18vh;
+}
+
+
+.environnementTable{
+    background-color: #636363;
+    height: auto;
+
+}
+.case{
+    height: 33%;
+    width: 33%;
+    border : solid black;
+}
+.tableJeu{
+    height:850px;
+    width: 850px;
+    background-color: #FFFFFF;
+    margin-left: 5%;
+    padding-top: 3%;
+    background-image: url("Images/fondjeu.png");
+}
+td a{
+    display: block;
+    height: 50%;
+    width: auto;
+}
+.imgPions{
+    max-width: 100%;
+    max-height: 100%;}
+
+.boutonFermer{
+    position: absolute;
+    right: 80px;
+    top: 60px;
+}
+
+.borderAngle{
+    border-radius: 10px;
+}
