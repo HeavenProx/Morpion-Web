@@ -25,7 +25,22 @@
                                     0,0,0,
                                     0,0,0,
                                     0,0,0);
+                                    $_SESSION['scoreJoueur'] = 0;
+                                    $_SESSION['scoreBot'] = 0;
+                                    $randInt = rand(1,2);
+                                    if ($randInt == 1){
+                                        $_SESSION['tourJoueur'] = true;
+                                        define($joueurCommence, "C'est toi qui commence");
+                                    }
+                                    else {
+                                        $_SESSION['tourJoueur'] = false;
+                                        define($botCommence, "C'est le bot qui commence");
+                                    }        
                             }
+                
+                            $joueur1= 1;
+                            $bot = 2;
+                            $click = $_GET['case'];     
 
                             $_SESSION['scoreJoueur'] = 0;
                             $_SESSION['scoreBot'] = 0;
@@ -47,42 +62,209 @@
                                     <a href="?case='.$rang.'">';
 
                                     if ( $click == $rang and $_SESSION['grille'][$rang - 1]==0){
-                                        echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
-                                        $_SESSION['grille'][$rang - 1] = 1;
-                                    }
-                                    else if ($_SESSION['grille'][$rang - 1] != 0 ) {
-                                        if($_SESSION['grille'][$rang - 1] == 1){
+                                        if($_SESSION['tourJoueur'] == true){
                                             echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
+                                            $_SESSION['grille'][$rang - 1] = 1;
+                                            checkVictory();
+                                            $_SESSION['tourJoueur'] = false;
                                         }
-                                                
                                         else{
-                                            echo '<img class="imgPions" src="Images/rond.png" alt="Croix">';
+                                            echo '<img class="imgPions" src="Images/rond.png" alt="Cercle"';
+                                            $_SESSION['grille'][$rang - 1 ] = 2;
+                                            checkVictory();
+                                            $_SESSION['tourJoueur'] = true;
                                         }
-                                                                                    }                  
-                                    if($_SESSION['grille'][0] == 1){echo '<img src="Images/croix.png" alt="Croix">';}
-                                        elseif($_SESSION['grille'][0] == 2){echo '<img src="Images/rond.png" alt="Circle">';} 
-                                        else echo " "; 
+                                        
+                                    }
+                                    elseif ($_SESSION['grille'][$rang - 1] != 0 ) {
+            
+                                        if($_SESSION['grille'][$rang - 1] == 1){
+                                            
+                                            echo '<img class="imgPions" src="Images/croix.png" alt="Croix">';
+                                            
+                                        }
+                                        else{
 
-                                    echo '</a></td>';
+                                            echo '<img class="imgPions" src="Images/rond.png" alt="Cercle">';                      
+                                        }
+                                    }
                                 }
-                                echo '</tr>';
+                            }
+
+                            checkVictory();
+                            
+                            //endPopUp(); 
+
+                            function checkVictory(){                
+                                if($_SESSION['grille'][0] == $_SESSION['grille'][1] and $_SESSION['grille'][1]  ==  $_SESSION['grille'][2]){
+                                    if($_SESSION['grille'][1] == 1){
+                                        win();    
+                                        exit;                  
+                                    }
+                                    elseif($_SESSION['grille'][1]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+                                }
+                                //detection de victoire 2eme ligne horizontale
+                                elseif($_SESSION['grille'][3] == $_SESSION['grille'][4] and $_SESSION['grille'][4]  ==  $_SESSION['grille'][5]){
+                                    if($_SESSION['grille'][4] == 1){
+                                        win(); 
+                                        exit;                           
+                                    }
+                                    elseif($_SESSION['grille'][4]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+            
+                                }
+                                //detection de victoire 3 eme ligne horizontale
+                                elseif($_SESSION['grille'][6] == $_SESSION['grille'][7] and $_SESSION['grille'][7]  ==  $_SESSION['grille'][8]){
+                                    if($_SESSION['grille'][7] == 1){
+                                        win();   
+                                        exit;                        
+                                    }
+                                    elseif($_SESSION['grille'][7]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+            
+                                }
+                                //detection de victoire premiere ligne verticale
+                                elseif($_SESSION['grille'][0] == $_SESSION['grille'][3] and $_SESSION['grille'][3]  ==  $_SESSION['grille'][6]){
+                                    if($_SESSION['grille'][3] == 1){
+                                        win();  
+                                        exit;                     
+                                    }
+                                    elseif($_SESSION['grille'][3]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+                                }
+                                //detection de victoire deuxieme ligne verticale
+                                elseif($_SESSION['grille'][1] == $_SESSION['grille'][4] and $_SESSION['grille'][4]  ==  $_SESSION['grille'][7]){
+                                    if($_SESSION['grille'][4] == 1){
+                                        win();  
+                                        exit;                        
+                                    }
+                                    elseif($_SESSION['grille'][4]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+                                }
+                                //detection de victoire troisieme ligne verticale
+                                elseif($_SESSION['grille'][2] == $_SESSION['grille'][5] and $_SESSION['grille'][5]  ==  $_SESSION['grille'][8]){
+                                    if($_SESSION['grille'][5] == 1){
+                                        win();   
+                                        exit;                         
+                                    }
+                                    elseif($_SESSION['grille'][5]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+                                }
+                                
+                                //detection de victoire diagonale gauche -> droite
+                                elseif($_SESSION['grille'][0] == $_SESSION['grille'][4] and $_SESSION['grille'][4]  ==  $_SESSION['grille'][8]){
+                                    if($_SESSION['grille'][4] == 1){
+                                        win(); 
+                                        exit;                         
+                                    }
+                                    elseif($_SESSION['grille'][4]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+            
+                                }
+                                //detection de victoire diagonale droite -> gauche
+                                elseif($_SESSION['grille'][2] == $_SESSION['grille'][4] and $_SESSION['grille'][4]  ==  $_SESSION['grille'][6]){
+                                    if($_SESSION['grille'][4] == 1){
+                                        win(); 
+                                        exit;                          
+                                    }
+                                    elseif($_SESSION['grille'][4]== 2) {
+                                        lose();
+                                        exit; 
+                                    }
+                                }
+                                //header('Location:morpion.php?case=0');
+                            } 
+
+                            function win(){ //<script>alert('Vous avez gagné ! 1 point est attribué à votre compte.');</script>     
+                                ?> 
+                                <div class="endPopup">
+                                    <h3>Bravo vous avez gagné !</h3>
+                                    <h4>1 point est attribué à votre compte.</h4>
+                                    <br>
+                                    <h4>Voulez vous recommencer ?</h4>
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <form action="morpion.php?case=0">
+                                                    <button class="btnRejouer">Oui</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <form action="accueil.php">
+                                                    <button class="btnRejouer">Non</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                       
+                                </div>  
+                                <?php    
+                            }
+
+                            function lose(){
+                                ?> 
+                                
+                                <div class="endPopup">
+                                    <h3>Dommage, vous avez perdu !</h3>
+                                    <h4>1 point est retiré de votre compte.</h4>
+                                    <br>
+                                    <h4>Voulez vous recommencer ?</h4>
+                                    
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <form action="morpion.php?case=0">
+                                                    <button class="btnRejouer">Oui</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <form action="accueil.php">
+                                                    <button class="btnRejouer">Non</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <?php 
                             }
                             ?> 
                         </table>
                     </div>
+
+
 
                     <!-- Implementation coté texte -->
                     <div id="cotetexte" class="col-sm-5 text-center">
 
                         <div id="texttopmorpion">
                             
-                            <h3>Jeu du morpion</h3>  
+                            <h2>Jeu du morpion</h2>  
                             <div class="boutonFermer">
                                 <a href="accueil.php"><img src="Images/boutonfermer.png" alt=""></a>
                             </div>
 
-                            <p>Joueur <?php echo $_SESSION['tourJoueur']; ?> c'est ton tour</p>
-
+                            <h4 class="quiCommence"><u><?php 
+                            if(isset($joueurCommence)){
+                                echo("greg");
+                            } 
+                            ?></u></h4>
+                            
                             <div class="principejeu borderAngle">
                                 <h5>Le principe : </h5>
                                 <p>Chaque joueur a son propre symbole, la croix ou le rond. Chaque joueur pose sont symbole tour à tour.</p>
@@ -118,8 +300,6 @@
                         </div>
                     </div>
                 </div>
-                    <!-- <script>alert("Vous avez gagné ! 1 point est ajouté à votre solde.")</script>
-                    <script>alert("Vous avez perdu ! 1 point est retiré de votre solde.")</script>-->
             </div>
         </div>
     </body>

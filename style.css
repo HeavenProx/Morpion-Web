@@ -124,11 +124,10 @@ body{
     height:850px;
     width: 850px;
     background-color: #FFFFFF;
-    margin-left: 10%;
-    margin-top: 5px;
-    padding-top: 5%;
+    margin-left: 5%;
+    padding-top: 3%;
+    margin-top: 0.25em;
     background-image: url("Images/fondjeu.png");
-    justify-content: center;
 }
 td a{
     display: block;
@@ -151,4 +150,32 @@ td a{
 
 .zoneRow{
     background-image: linear-gradient(to top, #0d8192, #006d8f, #235885, #3b4272, #482a57, #552356, #621951, #6e0649, #8b0362, #a9017e, #c6029c, #e30abd);
+}
+
+.endPopup{
+    position: absolute;   
+    z-index: 99999;
+    margin: 1em;
+    padding: 1em;
+    background-color: black;
+    color: white;
+    border: solid 2px white;
+    border-radius: 10px;
+    vertical-align: middle;
+    top: 40%;
+    left: 35%;
+}
+.btnRejouer{
+    background: #0066A2;
+    color: white;
+    border-style: outset;
+    border-color: #0066A2;
+    height: 2em;
+    width: 4em;
+    font: bold 15px arial, sans-serif;
+    text-shadow:none;
+}
+
+.quiCommence{
+    color: black;
 }

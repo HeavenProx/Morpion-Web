@@ -19,7 +19,7 @@
             <div class="col-sm-12 text-center choixjeu">
                 <div class="row text-center ">
                     <figure class="col-sm-12 text-center rowchoixjeu">
-                        <a href="morpion.php" title="Clic pour jouer au morpion !" ><img src="img/fondchoixjeu.jpg"></a>  
+                        <a href="morpion.php?case=0" title="Clic pour jouer au morpion !" ><img src="Images/fondchoixjeu.jpg"></a>  
                         <figcaption id="inscriptionmorpion">Morpion</figcaption>
                     </figure> 
                 </div>
