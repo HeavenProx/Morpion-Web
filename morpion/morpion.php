@@ -220,7 +220,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <form action="accueil.php">
+                                                <form action="../index.php">
                                                     <button class="btnRejouer">Non</button>
                                                 </form>
                                             </div>
@@ -249,7 +249,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="index.php">
+                                                <a href="../index.php">
                                                     <button class="btnRejouer">Non</button>
                                                 </a>
                                             </div>
@@ -277,7 +277,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="index.php">
+                                                <a href="../index.php">
                                                     <button class="btnRejouer">Non</button>
                                                 </a>
                                             </div>
@@ -296,7 +296,7 @@
                             
                             <h2>Jeu du morpion</h2>  
                             <div class="boutonFermer">
-                                <a href="index.php"><img src="Images/boutonfermer.png" alt=""></a>
+                                <a href="../index.php"><img src="Images/boutonfermer.png" alt=""></a>
                             </div>
 
                             <h4 class="quiCommence"><u>
